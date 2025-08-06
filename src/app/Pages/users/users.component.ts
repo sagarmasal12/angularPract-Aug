@@ -14,6 +14,8 @@ export class UsersComponent {
     show = true;
   username = 'Sagar';
 
+  cityList:string[]= ['Pune','Vasai','Mumbai','Nagpur'];
+
  
   toggleComponent() {
     this.show = !this.show;

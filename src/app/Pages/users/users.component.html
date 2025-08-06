@@ -7,4 +7,13 @@
          <div class="btn btn-warning ms-2" (click)="changeCourse('Dot Net')">Course Name</div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-5">
+            <ul>
+                @for( item of cityList; track $index ){
+                    <li>{{$index+1}}. {{item}}</li>
+                }
+            </ul>
+        </div>
+    </div>
 </div>

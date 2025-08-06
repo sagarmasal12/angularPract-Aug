@@ -14,11 +14,13 @@ export class DashboardComponent {
 
   // ✅ Method to increase the count
   increment() {
+    debugger
     this.count.set(this.count() + 1);
   }
 
   // ✅ Method to reset the count
   reset() {
+    debugger
     this.count.set(0);
   }
 }
