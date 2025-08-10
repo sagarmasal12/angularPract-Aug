@@ -1,8 +1,9 @@
+import { NgFor } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-users',
-  imports: [],
+  imports: [NgFor],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css'
 })
