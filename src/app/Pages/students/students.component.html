@@ -1,1 +1,44 @@
-<p>students works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+
+
+            <h2>student management</h2>
+            <div class="row">
+                <div class="col-3">
+                    <input type="text" class="form-control" [(ngModel)]="newStudent.name" placeholder="Name"><br>
+                    <input type="text" class="form-control" [(ngModel)]="newStudent.course" placeholder="Course">
+                </div>
+                <div class="col-3">
+                    <input type="text" class="form-control" [(ngModel)]="newStudent.email" placeholder="Email">
+                </div>
+            </div>
+
+
+            <div class="btn btn-primary" (click)="addStudent()">Add student</div>
+
+            <hr>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- studentlist  -->
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Course</th>
+        <th>Actions</th>
+    </tr>
+    <tr *ngFor="let student of students">
+        <td>{{student.id}}</td>
+        <td>{{student.name}}</td>
+        <td>{{student.email}}</td>
+        <td>{{student.course}}</td>
+        <td></td>
+    </tr>
+</table>
