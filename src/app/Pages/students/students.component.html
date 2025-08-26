@@ -73,8 +73,8 @@
             <td>{{ student.email }}</td>
             <td>{{ student.course }}</td>
             <td>
-              <i class="bi bi-archive-fill pe-3 ps-1"></i>
-              <i class="bi bi-pencil-square ps-3"></i>
+              <i class="bi bi-archive-fill pe-3 ps-1 handpts" (click)="ondelete(student.id)"></i>
+              <i class="bi bi-pencil-square ps-3 handpts"></i>
             </td>
           </tr>
         </tbody>

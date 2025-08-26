@@ -43,7 +43,13 @@ export class StudentsComponent implements OnInit {
     if (this.studentform.valid) {
       this.studentService.addStudent(this.studentform.value);
       this.students = this.studentService.getFromStorage();
+      this.toaster.success('Form is succesfully submitted');
       this.studentform.reset();
     }
+  }
+
+  ondelete(id: number) {
+    this.studentService.delete(id);
+    this.students = this.studentService.getFromStorage();
   }
 }

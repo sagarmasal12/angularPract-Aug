@@ -37,4 +37,9 @@ export class StudentService implements OnInit {
 
     this.saveToStorage();
   }
+
+  delete(id: number) {
+    this.students = this.students.filter((stu) => stu.id !== id);
+    this.saveToStorage();
+  }
 }
