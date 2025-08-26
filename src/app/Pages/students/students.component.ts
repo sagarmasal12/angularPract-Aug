@@ -1,84 +1,49 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../../student.service';
 import { Student } from '../../student.model';
-import {  FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgFor } from '@angular/common';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { NgFor, NgIf } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-students',
-  imports: [ReactiveFormsModule, NgFor],
+  imports: [ReactiveFormsModule, NgFor, NgIf],
   templateUrl: './students.component.html',
-  styleUrl: './students.component.css'
+  styleUrl: './students.component.css',
 })
-export class StudentsComponent implements OnInit{
+export class StudentsComponent implements OnInit {
+  studentform: FormGroup;
 
-  studentform:FormGroup;
+  students: Student[] = [];
+  nextId = 1;
+  isEdit = false;
+  editId = 0;
 
-  students:Student[]=[];
-  nextId=1;
-
-  constructor(private studentService:StudentService,
-    private toaster:ToastrService,
-    private fb:FormBuilder
-  ){
-    this.studentform= this.fb.group({
-      name:['',Validators.required],
-      course:['',Validators.required],
-      email:['',[Validators.required,Validators.email]]
-    })
-
+  constructor(
+    private studentService: StudentService,
+    private toaster: ToastrService,
+    private fb: FormBuilder
+  ) {
+    this.studentform = this.fb.group({
+      name: ['', Validators.required],
+      course: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+    });
   }
   ngOnInit(): void {
-    // this.loadStudents();
-    // ✅ Load data from localStorage when component loads
-    const savedData = localStorage.getItem('students');
-    if (savedData) {
-      this.students = JSON.parse(savedData);
-      // maintain nextId correctly
-      if (this.students.length > 0) {
-        this.nextId = this.students[this.students.length - 1].id + 1;
-      }
-    }
+    this.students = this.studentService.getFromStorage();
   }
 
-  loadStudents(){
-    this.students = this.studentService.getStudents()
-  }
-
-  // addStudent(){
-  // if (
-  //   this.newStudent.name.trim() !== '' &&
-  //   this.newStudent.email.trim() !== '' &&
-  //   this.newStudent.course.trim() !== ''
-  // )   {
-  //    this.studentService.addStudent({...this.newStudent});
-  //   this.newStudent = {
-  //     id:0,name:'',email:'',course:''
-  //   };
-  //   this.loadStudents();
-  //   this.toaster.success("Fields add Succesfully")
-  //  }
-  //  else{
-  //   this.toaster.info('All fields are required',"error")
-  //  }
-    
-  // }
-   addStudent() {
+  addStudent() {
     if (this.studentform.valid) {
-      const newStudent = {
-        id: this.nextId++,
-        ...this.studentform.value
-      };
-
-      this.students.push(newStudent);
-      localStorage.setItem('students', JSON.stringify(this.students));
-
+      this.studentService.addStudent(this.studentform.value);
+      this.students = this.studentService.getFromStorage();
       this.studentform.reset();
-      localStorage.getItem("mystudent")
-    } else {
-      // ✅ Show validation message only if invalid
-      alert('⚠️ Please fill all required fields correctly!');
     }
   }
 }

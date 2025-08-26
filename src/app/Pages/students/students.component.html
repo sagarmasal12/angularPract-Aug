@@ -1,53 +1,84 @@
 <div class="container">
-    <div class="row">
-        <div class="col-6">
-            <h2>Student Management</h2>
+  <div class="row">
+    <div class="col-6">
+      <h2>Student Management</h2>
 
-            <!-- ✅ Correct Reactive Form -->
-            <form [formGroup]="studentform" (ngSubmit)="addStudent()">
-
-                <div class="row">
-                    <div class="col-4">
-                        <input type="text" class="form-control" formControlName="name" placeholder="Name" /><br />
-                        <input type="text" class="form-control" formControlName="course" placeholder="Course" />
-                    </div>
-                    <div class="col-4">
-                        <input type="text" class="form-control" formControlName="email" placeholder="Email" />
-                    </div>
-                </div>
-
-                <!-- ✅ Use button instead of div -->
-                <button type="submit" class="btn btn-primary mt-2" [disabled]="studentform.invalid">
-                    Add Student
-                </button>
-            </form>
-
-            <hr />
+      <!-- ✅ Correct Reactive Form -->
+      <form [formGroup]="studentform" (ngSubmit)="addStudent()">
+        <div class="row">
+          <div class="col-4">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="name"
+              placeholder="Name"
+            /><br />
+            <input
+              type="text"
+              class="form-control"
+              formControlName="course"
+              placeholder="Course"
+            />
+          </div>
+          <div class="col-4">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="email"
+              placeholder="Email"
+            />
+          </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-10">
-            <table class="table table-bordered border-danger" border="1">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Course</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let student of students">
-                        <td>{{ student.id }}</td>
-                        <td>{{ student.name }}</td>
-                        <td>{{ student.email }}</td>
-                        <td>{{ student.course }}</td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <!-- ✅ Use button instead of div -->
+        <button
+          type="submit"
+          class="btn btn-primary mt-2"
+          [disabled]="studentform.invalid"
+                    *ngIf="!isEdit"
+
+        >
+          Add Student
+        </button>
+        <button
+          type="submit"
+          class="btn btn-primary mt-2"
+          [disabled]="studentform.invalid"
+          *ngIf="isEdit"
+        >
+          Update Student
+        </button>
+      </form>
+
+      <hr />
     </div>
+  </div>
+
+  <div class="row">
+    <div class="col-10">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Course</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let student of students">
+            <td>{{ student.id }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.course }}</td>
+            <td>
+              <i class="bi bi-archive-fill pe-3 ps-1"></i>
+              <i class="bi bi-pencil-square ps-3"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

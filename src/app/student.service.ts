@@ -2,37 +2,39 @@ import { Injectable, OnInit } from '@angular/core';
 import { Student } from './student.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StudentService implements OnInit {
-
-  constructor() { }
-  
-private students: Student[] = [];
-
-ngOnInit(): void {
-  
-}
-// add student
-addStudent(student: Student) {
-  student.id = this.students.length + 1;
-  // Update the local array
-  this.students.push(student);
-
-  // Save to localStorage
-  localStorage.setItem("myStudent", JSON.stringify(this.students));
-}
-
-getStudents(): Student[] {
-  const getAllStudents = localStorage.getItem("myStudent");
-
-  if (getAllStudents && getAllStudents!=="null") {
-    // parse and also update this.students so it stays in sync
-    this.students = JSON.parse(getAllStudents) as Student[];
- 
+  constructor() {
+    this.getFromStorage();
   }
 
-  return this.students;
-}
+  private students: Student[] = [];
 
+  ngOnInit(): void {}
+
+  saveToStorage() {
+    localStorage.setItem('myStudents', JSON.stringify(this.students));
+  }
+
+  getFromStorage(): Student[] {
+    let temp = localStorage.getItem('myStudents');
+    if (temp) {
+      this.students = JSON.parse(temp);
+      return this.students;
+    }
+    return [];
+  }
+
+  addStudent(student: Student) {
+    let newId =
+      this.students.length > 0
+        ? Math.max(...this.students.map((s) => s.id ?? 0)) + 1
+        : 1;
+
+    student.id = newId;
+    this.students.push(student);
+
+    this.saveToStorage();
+  }
 }
