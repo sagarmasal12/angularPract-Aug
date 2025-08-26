@@ -39,7 +39,7 @@ export class StudentsComponent implements OnInit{
       id:0,name:'',email:'',course:''
     };
     this.loadStudents();
-    this.toaster.warning("Fields add Succesfully")
+    this.toaster.success("Fields add Succesfully")
    }
    else{
     this.toaster.info('All fields are required',"error")
