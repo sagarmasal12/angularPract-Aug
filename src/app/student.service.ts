@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Student } from './student.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class StudentService {
+export class StudentService implements OnInit {
 
   constructor() { }
 
@@ -26,6 +26,9 @@ export class StudentService {
 
 private students: Student[] = [];
 
+ngOnInit(): void {
+  
+}
 // add student
 addStudent(student: Student) {
   student.id = this.students.length + 1;
@@ -40,9 +43,10 @@ addStudent(student: Student) {
 getStudents(): Student[] {
   const getAllStudents = localStorage.getItem("myStudent");
 
-  if (getAllStudents) {
+  if (getAllStudents && getAllStudents!=="null") {
     // parse and also update this.students so it stays in sync
     this.students = JSON.parse(getAllStudents) as Student[];
+ 
   }
 
   return this.students;
