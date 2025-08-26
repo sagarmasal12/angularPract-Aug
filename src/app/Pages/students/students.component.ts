@@ -2,13 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../../student.service';
 import { Student } from '../../student.model';
 import { FormsModule } from '@angular/forms';
-import { NgForOf } from "../../../../node_modules/@angular/common/common_module.d-NEF7UaHr";
 import { NgFor } from '@angular/common';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-students',
-  imports: [FormsModule, NgFor,ToastrModule],
+  imports: [FormsModule, NgFor],
   templateUrl: './students.component.html',
   styleUrl: './students.component.css'
 })
@@ -22,10 +21,10 @@ export class StudentsComponent implements OnInit{
 
   }
   ngOnInit(): void {
-    this.loadstudents();
+    this.loadStudents();
   }
 
-  loadstudents(){
+  loadStudents(){
     this.students = this.studentService.getStudents()
   }
 
@@ -39,10 +38,11 @@ export class StudentsComponent implements OnInit{
     this.newStudent = {
       id:0,name:'',email:'',course:''
     };
-    this.loadstudents();
+    this.loadStudents();
+    this.toaster.warning("Fields add Succesfully")
    }
    else{
-    this.toaster.error('All fields are required',"error")
+    this.toaster.info('All fields are required',"error")
    }
     
   }
