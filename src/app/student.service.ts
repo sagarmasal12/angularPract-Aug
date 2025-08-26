@@ -7,23 +7,7 @@ import { Student } from './student.model';
 export class StudentService implements OnInit {
 
   constructor() { }
-
-//   private students:Student[]=[];
-
   
-
-//   //add student
-//   addstudent(student:Student){
-//     student.id = this.students.length+1;
-//     this.students.push(student);
-//     localStorage.setItem("myStudent",JSON.stringify(this.students))
-//   }
-//   getstudent():Student[]{
-//  let getAllstudents = JSON.parse(localStorage.getItem("myStudent")) 
-//     return this.students 
-
-//   }
-
 private students: Student[] = [];
 
 ngOnInit(): void {
@@ -32,7 +16,6 @@ ngOnInit(): void {
 // add student
 addStudent(student: Student) {
   student.id = this.students.length + 1;
-
   // Update the local array
   this.students.push(student);
 

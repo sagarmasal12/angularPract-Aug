@@ -30,7 +30,16 @@ export class StudentsComponent implements OnInit{
 
   }
   ngOnInit(): void {
-    this.loadStudents();
+    // this.loadStudents();
+    // ✅ Load data from localStorage when component loads
+    const savedData = localStorage.getItem('students');
+    if (savedData) {
+      this.students = JSON.parse(savedData);
+      // maintain nextId correctly
+      if (this.students.length > 0) {
+        this.nextId = this.students[this.students.length - 1].id + 1;
+      }
+    }
   }
 
   loadStudents(){
@@ -63,7 +72,10 @@ export class StudentsComponent implements OnInit{
       };
 
       this.students.push(newStudent);
+      localStorage.setItem('students', JSON.stringify(this.students));
+
       this.studentform.reset();
+      localStorage.getItem("mystudent")
     } else {
       // ✅ Show validation message only if invalid
       alert('⚠️ Please fill all required fields correctly!');
