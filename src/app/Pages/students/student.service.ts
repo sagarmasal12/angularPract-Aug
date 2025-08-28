@@ -42,4 +42,19 @@ export class StudentService implements OnInit {
     this.students = this.students.filter((stu) => stu.id !== id);
     this.saveToStorage();
   }
+
+  updateStudent(updatedStudent: Student) {
+    debugger;
+    let index = this.students.findIndex((stu) => stu.id == updatedStudent.id);
+    if (index) {
+      this.students = this.getFromStorage();
+      this.students[index] = updatedStudent;
+    }
+    console.log(this.students);
+
+    this.saveToStorage();
+
+    // localStorage.removeItem('myStudents');
+    // localStorage.setItem('myStudents', JSON.stringify(this.students));
+  }
 }

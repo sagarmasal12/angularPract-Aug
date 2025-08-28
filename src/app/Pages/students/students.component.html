@@ -4,7 +4,7 @@
       <h2>Student Management</h2>
 
       <!-- ✅ Correct Reactive Form -->
-      <form [formGroup]="studentform" (ngSubmit)="addStudent()">
+      <form [formGroup]="studentform">
         <div class="row">
           <div class="col-4">
             <input
@@ -35,8 +35,8 @@
           type="submit"
           class="btn btn-primary mt-2"
           [disabled]="studentform.invalid"
-                    *ngIf="!isEdit"
-
+          *ngIf="editId==0"
+          (click)="onSubmit()"
         >
           Add Student
         </button>
@@ -44,7 +44,8 @@
           type="submit"
           class="btn btn-primary mt-2"
           [disabled]="studentform.invalid"
-          *ngIf="isEdit"
+          *ngIf="editId>0"
+          (click)="onSubmit()"
         >
           Update Student
         </button>
@@ -74,7 +75,7 @@
             <td>{{ student.course }}</td>
             <td>
               <i class="bi bi-archive-fill pe-3 ps-1 handpts" (click)="ondelete(student.id)"></i>
-              <i class="bi bi-pencil-square ps-3 handpts"></i>
+              <i class="bi bi-pencil-square ps-3 handpts" (click)="onEdit(student)"></i>
             </td>
           </tr>
         </tbody>
