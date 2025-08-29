@@ -4,6 +4,7 @@ import { UsersComponent } from './Pages/users/users.component';
 import { PracticePageComponent } from './Pages/practice-page/practice-page.component';
 import { StudentsComponent } from './Pages/students/students.component';
 import { EmployeeDataComponent } from './Pages/employee-data/employee-data.component';
+import { ProductDataComponent } from './product-data/product-data.component';
 
 export const routes: Routes = [
   {
@@ -25,5 +26,9 @@ export const routes: Routes = [
   {
     path: 'emp-data',
     component: EmployeeDataComponent,
+  },
+  {
+    path: 'product-data',
+    component: ProductDataComponent,
   },
 ];
