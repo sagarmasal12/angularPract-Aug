@@ -33,4 +33,21 @@ export class ProductService implements OnInit {
     this.product.push(obj);
     this.saveToStorage();
   }
+
+  updateProd(updateProList: Productmodel) {
+    let index = this.product.findIndex((prod) => prod.id == updateProList.id);
+    if (index >= 0) {
+      this.product = this.getFromStorage();
+      this.product[index] = updateProList;
+      this.saveToStorage();
+      console.log('updated arrya', this.product);
+    } else {
+      alert('Invalid Status');
+    }
+  }
+
+  delete(ID: number) {
+    this.product = this.product.filter((prod) => prod.id !== ID);
+    this.saveToStorage();
+  }
 }

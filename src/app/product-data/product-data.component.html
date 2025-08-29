@@ -21,7 +21,7 @@
             <td>{{ item.skucode }}</td>
             <td>{{ item.category }}</td>
             <td>
-              <i class="bi bi-archive-fill pe-3 ps-1 handpts"></i>
+              <i class="bi bi-archive-fill pe-3 ps-1 handpts" (click)="onDelete(item)"></i>
               <i class="bi bi-pencil-square ps-3 handpts" (click)="editProduct(item)"></i>
             </td>
           </tr>
@@ -76,9 +76,10 @@
             </div>
           </div>
           <div class="card-footer">
-            <div class="btn btn-warning" (click)="addProducts()">
+            <div *ngIf="editId==0" class="btn btn-warning" (click)="addProducts()">
               Add Product
             </div>
+            <div  *ngIf="editId>0" class="btn btn-success" (click)="updateProd()">Update Prod</div>
           </div>
         </div>
       </form>

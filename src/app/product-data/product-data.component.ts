@@ -50,5 +50,19 @@ export class ProductDataComponent implements OnInit {
   editProduct(product: Productmodel) {
     this.productform.patchValue(product);
     this.editId = product.id;
+    console.log(this.editId);
+  }
+  updateProd() {
+    if (this.editId) {
+      this.productSrv.updateProd(this.productform.value);
+      this.editId = 0;
+      this.products = this.productSrv.getFromStorage();
+      this.productform.reset();
+    }
+  }
+
+  onDelete(prod: Productmodel) {
+    this.productSrv.delete(prod.id);
+    this.products = this.productSrv.getFromStorage();
   }
 }
