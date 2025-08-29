@@ -30,8 +30,8 @@ export class EmployeeDataComponent implements OnInit {
       lname: [''],
       state: ['', Validators.required],
       district: [''],
-      email: ['', Validators.required],
-      phoneNum: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phoneNum: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
 
       projectName: ['', Validators.required],
       role: ['', Validators.required],
