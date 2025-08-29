@@ -1,1 +1,104 @@
-<p>employee-data works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <h2>Employee Management</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>State</th>
+            <th>District</th>
+            <th>Phone Number</th>
+            <th>Role</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let emp of employees">
+            <td>{{ emp.id }}</td>
+            <td>{{ emp.fname }}</td>
+            <td>{{ emp.email }}</td>
+            <td>{{ emp.state }}</td>
+            <td>{{ emp.district }}</td>
+            <td>{{ emp.phoneNum }}</td>
+            <td>{{ emp.role }}</td>
+            <td>
+              <i class="bi bi-archive-fill pe-3 ps-1 handpts" (click)="onDelete(emp)"></i>
+              <i class="bi bi-pencil-square ps-3 handpts" (click)="onEdit(emp)"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-4">
+      <form [formGroup]="employeeForm">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header text-center">
+                <p>Employee Form</p>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-6 mt-2">
+                    <input
+                      type="text"
+                      class="form-control mt-1"
+                      placeholder="Enter first Name"
+                      formControlName="fname"
+                    />
+                    <input
+                      type="text"
+                      class="form-control mt-1"
+                      placeholder="Enter State "
+                      formControlName="state"
+                    />
+                    <input
+                      type="text"
+                      class="form-control mt-1"
+                      placeholder="Enter Phone No." formControlName="phoneNum"
+                    />
+                    <input
+                      type="email"
+                      class="form-control mt-1"
+                      placeholder="Enter Email" formControlName="email"
+                    />
+                  </div>
+                  <div class="col-6 mt-2">
+                    <input
+                      type="text"
+                      class="form-control mt-1"
+                      placeholder="Enter last Name" formControlName="lname"
+                    />
+
+                    <input
+                      type="text"
+                      class="form-control mt-1"
+                      placeholder="Enter district" formControlName="district"
+                    />
+                    <input
+                      type="text"
+                      class="form-control mt-1"
+                      placeholder="Enter Project Name" formControlName="projectName"
+                    />
+                    <input
+                      type="text"
+                      class="form-control mt-1"
+                      placeholder="Enter Role" formControlName="role"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="btn btn-info" *ngIf="editId==0" (click)="addEmployee()">Add Emp</div>
+                <div class="btn btn-success" *ngIf="editId>0" (click)="updateEmp()">Update Emp</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
