@@ -4,4 +4,5 @@ export interface Productmodel {
   skucode: string;
   brand: string;
   category: string;
+  // imageUrl: string; //store img
 }

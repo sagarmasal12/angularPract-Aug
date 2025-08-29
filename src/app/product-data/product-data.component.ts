@@ -25,9 +25,10 @@ export class ProductDataComponent implements OnInit {
     this.productform = this.fb.group({
       id: [0],
       proname: ['', Validators.required],
-      skucode: ['', Validators.required],
+      skucode: ['', [Validators.required, Validators.minLength(2)]],
       brand: ['', Validators.required],
       category: ['', Validators.required],
+      // imageUrl: [''],
     });
   }
 
@@ -41,9 +42,8 @@ export class ProductDataComponent implements OnInit {
       this.productSrv.addProduct(this.productform.value);
       this.products = this.productSrv.getFromStorage();
       this.productform.reset();
-    } else {
-      debugger;
-      alert('Invalid Form');
+    } else if (this.productform.invalid) {
+      this.productform.markAllAsTouched();
     }
   }
 
@@ -64,5 +64,18 @@ export class ProductDataComponent implements OnInit {
   onDelete(prod: Productmodel) {
     this.productSrv.delete(prod.id);
     this.products = this.productSrv.getFromStorage();
+  }
+
+  preview: string | ArrayBuffer | null = null;
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.preview = reader.result; // Base64 string
+      };
+      reader.readAsDataURL(file);
+    }
   }
 }
