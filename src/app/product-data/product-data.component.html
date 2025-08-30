@@ -1,121 +1,92 @@
 <div class="container">
-  <div class="row">
-    <div class="col-8">
-      <h2>Product Data</h2>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Product Name</th>
-            <th>Product Brand</th>
-            <th>Sku Code</th>
-            <th>Pro Category</th>
-            <!-- <th>Product Image</th> -->
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of products">
-            <td>{{ item.id }}</td>
-            <td>{{ item.proname }}</td>
-            <td>{{ item.brand }}</td>
-            <td>{{ item.skucode }}</td>
-            <td>{{ item.category }}</td>
-           
-            <td>
-              <i
-                class="bi bi-archive-fill pe-3 ps-1 handpts"
-                (click)="onDelete(item)"
-              ></i>
-              <i
-                class="bi bi-pencil-square ps-3 handpts"
-                (click)="editProduct(item)"
-              ></i>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-4">
-      <form [formGroup]="productform">
-        <div class="card">
-          <div class="card-header text-center">Product Data</div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-6">
-                <label for="">Product Name:</label>
-                <input
-                  type="text"
-                  class="form-control m-1"
-                  placeholder="Enter Product Name"
-                  formControlName="proname"
-                />
-                <div class="text-danger"
-                    *ngIf="productform.get('proname')?.touched && productform.get('proname')?.hasError('required')">
-                    Product Name required.
-                </div>
-                <label for="">Product Brand:</label>
-                <input
-                  type="text"
-                  class="form-control m-1"
-                  placeholder="Enter Product Brand"
-                  formControlName="brand"
-                />
-                <div class="text-danger" *ngIf="productform.get('brand')?.touched && productform.get('brand')?.hasError('required')">
-                    Brand Name Required
-                </div>
-                
-              </div>
-              <div class="col-6">
-                <label for="">Sku Code:</label>
-                <input
-                  type="text"
-                  class="form-control m-1"
-                  placeholder="Enter Sku Code"
-                  formControlName="skucode"
-                />
-                <div class="text-danger" *ngIf="productform.get('skucode')?.touched && productform.get('skucode')?.hasError('required')">
-                    skucode is required
-                </div>
-                <div class="text-danger"
-                    *ngIf="productform.get('skucode')?.touched && productform.get('skucode')?.hasError('minlength')">
-                    Sku Code must be at least 3 characters.
-                </div>
-                <label for="">Product Category:</label>
-                <select
-                  name=""
-                  id=""
-                  class="form-control"
-                  placeholder="slelect category"
-                  formControlName="category"
-                >
-                  <option value="" selected disabled>Select Category</option>
-                  <option value="Grocery">Grocery</option>
-                  <option value="Medical">Medical</option>
-                  <option value="Electronics">Electronics</option>
-                  <option value="Clothes">Clothes</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <div
-              *ngIf="editId == 0"
-              class="btn btn-warning"
-              (click)="addProducts()"
-            >
-              Add Product
-            </div>
-            <div
-              *ngIf="editId > 0"
-              class="btn btn-success"
-              (click)="updateProd()"
-            >
-              Update Prod
-            </div>
-          </div>
+    <div class="row">
+        <div class="col-8">
+            <h2>Product Data</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Product Name</th>
+                        <th>Product Brand</th>
+                        <th>Sku Code</th>
+                        <th>Pro Category</th>
+                        <!-- <th>Product Image</th> -->
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of products">
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.proname }}</td>
+                        <td>{{ item.brand }}</td>
+                        <td>{{ item.skucode }}</td>
+                        <td>{{ item.category }}</td>
+
+                        <td>
+                            <i class="bi bi-archive-fill pe-3 ps-1 handpts" (click)="onDelete(item)"></i>
+                            <i class="bi bi-pencil-square ps-3 handpts" (click)="editProduct(item)"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-      </form>
+        <div class="col-4 mt-5">
+            <form [formGroup]="productform">
+                <div class="card">
+                    <div class="card-header text-center">Product Data</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="">Product Name:</label>
+                                <input type="text" class="form-control m-1" placeholder="Enter Product Name"
+                                    formControlName="proname" />
+                                <div class="text-danger"
+                                    *ngIf="productform.get('proname')?.touched && productform.get('proname')?.hasError('required')">
+                                    Product Name required.
+                                </div>
+                                <label for="">Product Brand:</label>
+                                <input type="text" class="form-control m-1" placeholder="Enter Product Brand"
+                                    formControlName="brand" />
+                                <div class="text-danger"
+                                    *ngIf="productform.get('brand')?.touched && productform.get('brand')?.hasError('required')">
+                                    Brand Name Required
+                                </div>
+
+                            </div>
+                            <div class="col-6">
+                                <label for="">Sku Code:</label>
+                                <input type="text" class="form-control m-1" placeholder="Enter Sku Code"
+                                    formControlName="skucode" />
+                                <div class="text-danger"
+                                    *ngIf="productform.get('skucode')?.touched && productform.get('skucode')?.hasError('required')">
+                                    skucode is required
+                                </div>
+                                <div class="text-danger"
+                                    *ngIf="productform.get('skucode')?.touched && productform.get('skucode')?.hasError('minlength')">
+                                    Sku Code must be at least 3 characters.
+                                </div>
+                                <label for="">Product Category:</label>
+                                <select name="" id="" class="form-control" placeholder="slelect category"
+                                    formControlName="category">
+                                    <option value="" selected disabled>Select Category</option>
+                                    <option value="Grocery">Grocery</option>
+                                    <option value="Medical">Medical</option>
+                                    <option value="Electronics">Electronics</option>
+                                    <option value="Clothes">Clothes</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div *ngIf="editId == 0" class="btn btn-warning" (click)="addProducts()">
+                            Add Product
+                        </div>
+                        <div *ngIf="editId > 0" class="btn btn-success" (click)="updateProd()">
+                            Update Prod
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-  </div>
 </div>
