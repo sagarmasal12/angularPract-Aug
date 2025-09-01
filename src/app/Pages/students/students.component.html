@@ -7,46 +7,21 @@
       <form [formGroup]="studentform">
         <div class="row">
           <div class="col-4">
-            <input
-              type="text"
-              class="form-control"
-              formControlName="name"
-              placeholder="Name"
-            /><br />
-            <input
-              type="text"
-              class="form-control"
-              formControlName="course"
-              placeholder="Course"
-            />
+            <input type="text" class="form-control" formControlName="name" placeholder="Name" /><br />
+            <input type="text" class="form-control" formControlName="course" placeholder="Course" />
           </div>
           <div class="col-4">
-            <input
-              type="text"
-              class="form-control"
-              formControlName="email"
-              placeholder="Email"
-            />
+            <input type="text" class="form-control" formControlName="email" placeholder="Email" />
           </div>
         </div>
 
         <!-- ✅ Use button instead of div -->
-        <button
-          type="submit"
-          class="btn btn-primary mt-2"
-          [disabled]="studentform.invalid"
-          *ngIf="editId==0"
-          (click)="onSubmit()"
-        >
+        <button type="submit" class="btn btn-primary mt-2" [disabled]="studentform.invalid" *ngIf="editId==0"
+          (click)="onSubmit()">
           Add Student
         </button>
-        <button
-          type="submit"
-          class="btn btn-primary mt-2"
-          [disabled]="studentform.invalid"
-          *ngIf="editId>0"
-          (click)="onSubmit()"
-        >
+        <button type="submit" class="btn btn-primary mt-2" [disabled]="studentform.invalid" *ngIf="editId>0"
+          (click)="onSubmit()">
           Update Student
         </button>
       </form>
