@@ -21,32 +21,6 @@ export class PracticeApiComponent implements OnInit {
     this.fetchUsers();
   }
 
-  // fetchUsers() {
-  //   this.loading = true;
-  //   this.http
-  //     .get<data:BusUser[]>('https://api.freeprojectapi.com/api/BusBooking/GetAllUsers')
-  //     .subscribe({
-  //       next: (res: BusUser) => {
-  //         console.log('API Response:', res);
-  //         this.users = res.data || [];
-  //         this.loading = false;
-  //       },
-  //       error: (err) => {
-  //         this.error = 'Failed to fetch users: ' + err.message;
-  //         this.loading = false;
-  //       },
-  //     });
-  // }
-
-  // filteredUsers() {
-  //   const text = this.searchText.toLowerCase();
-  //   return this.users.filter(
-  //     (u) =>
-  //       (u.fullName || '').toLowerCase().includes(text) ||
-  //       (u.email || '').toLowerCase().includes(text)
-  //   );
-  // }
-
   fetchUsers() {
     this.loading = true;
     this.http
