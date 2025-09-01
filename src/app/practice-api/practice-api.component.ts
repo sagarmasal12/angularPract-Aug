@@ -14,11 +14,12 @@ export class PracticeApiComponent implements OnInit {
   users: BusUser[] = [];
   loading = false;
   error = '';
-  searchText = '';
+  // searchText = '';
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     this.fetchUsers();
+    // this.getAllUser();
   }
 
   fetchUsers() {
@@ -40,12 +41,12 @@ export class PracticeApiComponent implements OnInit {
       });
   }
 
-  filteredUsers(): BusUser[] {
-    const text = this.searchText.toLowerCase();
-    return this.users.filter(
-      (u: any) =>
-        (u.fullName || '').toLowerCase().includes(text) ||
-        (u.email || '').toLowerCase().includes(text)
-    );
-  }
+  // filteredUsers(): BusUser[] {
+  //   const text = this.searchText.toLowerCase();
+  //   return this.users.filter(
+  //     (u: any) =>
+  //       (u.fullName || '').toLowerCase().includes(text) ||
+  //       (u.email || '').toLowerCase().includes(text)
+  //   );
+  // }
 }
