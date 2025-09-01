@@ -1,9 +1,21 @@
-<p>dashboard works!</p>
-<h1>Counter: {{ count() }}</h1>
-
-<div class="btn btn-success" (click)="increment()">Increment</div>
-<div class="btn btn-danger" (click)="reset()">Reset</div>
-
-<!-- 
-<button  (click)="increment()">Increment</button>
-<button (click)="reset()">Reset</button> -->
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="table table-secondary">
+                <div class="thead">
+                    <tr>
+                        <th>UserId</th>
+                        <th>Name</th>
+                        <th>Email-Id</th>
+                        <th>Role</th>
+                    </tr>
+                </div>
+                <tbody>
+                    <tr *ngFor="let item of itemList">
+                        <td>{{item}}</td>
+                    </tr>
+                </tbody>
+            </div>
+        </div>
+    </div>
+</div>

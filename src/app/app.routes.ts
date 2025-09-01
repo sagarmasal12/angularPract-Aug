@@ -5,6 +5,7 @@ import { StudentsComponent } from './Pages/students/students.component';
 import { EmployeeDataComponent } from './Pages/employee-data/employee-data.component';
 import { ProductDataComponent } from './product-data/product-data.component';
 import { RestaurantMenuComponent } from './restaurant-menu/restaurant-menu.component';
+import { PracticeApiComponent } from './practice-api/practice-api.component';
 
 export const routes: Routes = [
   {
@@ -30,5 +31,9 @@ export const routes: Routes = [
   {
     path: 'restaurant-menu',
     component: RestaurantMenuComponent,
+  },
+  {
+    path: 'practiceapi',
+    component: PracticeApiComponent,
   },
 ];

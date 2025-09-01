@@ -1,0 +1,38 @@
+<div class="container mt-3">
+  <h2>Bus Users</h2>
+
+  <div *ngIf="loading" class="alert alert-info">Loading...</div>
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+  <input
+    type="text"
+    class="form-control mb-3"
+    placeholder="Search by name or email"
+    [(ngModel)]="searchText"
+  />
+
+  <table
+    class="table table-bordered table-striped"
+    *ngIf="!loading && users.length"
+  >
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <!-- <th>Role</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of filteredUsers(); index as i">
+        <td>{{ i + 1 }}</td>
+        <td>{{ item.fullName }}</td>
+        <td>{{ item.emailId }}</td>
+        <td>{{ item.role }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="!loading && !users.length" class="text-muted">No users found.</p>
+</div>
