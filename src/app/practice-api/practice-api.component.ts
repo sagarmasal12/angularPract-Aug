@@ -9,6 +9,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { BusUser } from './practice.model';
+import { PracticeApiService } from './practice-api.service';
 
 @Component({
   selector: 'app-practice-api',
@@ -28,12 +29,15 @@ export class PracticeApiComponent implements OnInit {
 
   bususerform: FormGroup;
   // searchText = '';
-  constructor(private http: HttpClient, private fb: FormBuilder) {
+  constructor(
+    private http: HttpClient,
+    private fb: FormBuilder,
+    private userSrv: PracticeApiService
+  ) {
     this.bususerform = this.fb.group({
       userId: [0],
       userName: ['', Validators.required],
       emailId: [''],
-      fullName: ['', Validators.required],
       role: ['', Validators.required],
     });
   }
@@ -43,28 +47,8 @@ export class PracticeApiComponent implements OnInit {
     this.getAllUser();
   }
 
-  // fetchUsers() {
-  //   this.loading = true;
-  //   this.http
-  //     .get<{ data: BusUser[] }>(
-  //       'https://api.freeprojectapi.com/api/BusBooking/GetAllUsers'
-  //     )
-  //     .subscribe({
-  //       next: (res) => {
-  //         debugger;
-  //         console.log('API Response:', res);
-  //         this.users = res.data || [];
-  //         this.loading = false;
-  //       },
-  //       error: (err) => {
-  //         this.error = 'Failed to fetch users: ' + err.message;
-  //         this.loading = false;
-  //       },
-  //     });
-  // }
-
   getAllUser() {
-    this.http
+    return this.http
       .get<{ data: BusUser[] }>(
         'https://api.freeprojectapi.com/api/BusBooking/GetAllUsers'
       )
@@ -79,14 +63,20 @@ export class PracticeApiComponent implements OnInit {
       });
   }
 
-  addUser() {}
-
-  // filteredUsers(): BusUser[] {
-  //   const text = this.searchText.toLowerCase();
-  //   return this.users.filter(
-  //     (u: any) =>
-  //       (u.fullName || '').toLowerCase().includes(text) ||
-  //       (u.email || '').toLowerCase().includes(text)
-  //   );
-  // }
+  addUser() {
+    if (this.bususerform.valid) {
+      this.userSrv.addBusUser(this.bususerform.value).subscribe({
+        next: () => {
+          debugger;
+          this.getAllUser();
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+      this.getAllUser();
+    } else {
+      alert('Invalid');
+    }
+  }
 }
