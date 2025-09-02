@@ -6,12 +6,11 @@ import { IUser } from './user.model';
   providedIn: 'root',
 })
 export class UserService {
+  private apiUrl =
+    'https://freeapi.miniprojectideas.com/api/User/CreateNewUser';
   constructor(private http: HttpClient) {}
 
   addUser(res: IUser) {
-    this.http.post(
-      'https://freeapi.miniprojectideas.com/api/User/CreateNewUser',
-      res
-    );
+    return this.http.post(`${this.apiUrl}`, res);
   }
 }

@@ -18,10 +18,10 @@ import { UserService } from './user.service';
 export class UserCrudComponent implements OnInit {
   userForm!: FormGroup;
   users: IUser[] = [];
-  editingUserId: number | null = null;
-  nextId = 1;
 
-  constructor(private fb: FormBuilder, private userSrv: UserService) {
+  constructor(private fb: FormBuilder, private userSrv: UserService) {}
+
+  ngOnInit(): void {
     this.userForm = this.fb.group({
       userId: [0],
       firstName: ['', [Validators.required, Validators.minLength(2)]],
@@ -34,20 +34,17 @@ export class UserCrudComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    // this.initForm();
+  get f() {
+    return this.userForm.controls;
+    console.log(this.userForm);
   }
 
-  // private initForm() {
-  //   this.userForm = this.fb.group({
-  //     userId: [0],
-  //     firstName: ['', [Validators.required, Validators.minLength(2)]],
-  //     middleName: [''],
-  //     lastName: ['', [Validators.required, Validators.minLength(2)]],
-  //     mobileNo: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
-  //     emailId: ['', [Validators.required, Validators.email]],
-  //     altMobileNo: ['', [Validators.pattern(/^[0-9]{10}$/)]],
-  //     password: ['', [Validators.required, Validators.minLength(6)]],
-  //   });
-  // }
+  onSubmit() {
+    if (this.userForm.invalid) return;
+    this.userSrv.addUser(this.userForm.value).subscribe({
+      next: (res) => {
+        alert('User Add Successfully');
+      },
+    });
+  }
 }
