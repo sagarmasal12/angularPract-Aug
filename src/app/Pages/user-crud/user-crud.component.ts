@@ -9,6 +9,7 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { subscribeOn } from 'rxjs';
 
 @Component({
   selector: 'app-user-crud',
@@ -35,12 +36,35 @@ export class UserCrudComponent implements OnInit {
   }
 
   loadUsers() {
-    this.userSrv.getUsers().subscribe({
-      next: (res) => (this.users = res),
-      error: (err) => console.error('Error fetching here:- ', err),
-    });
+    const localData = localStorage.getItem('user');
+    if (localData) {
+      this.users = JSON.parse(localData);
+    } else {
+      this.userSrv.getUsers().subscribe({
+        next: (res) => {
+          this.users = res;
+          localStorage.setItem('user', JSON.stringify(this.users));
+        },
+        error: (err) => console.error('Error fetching here:- ', err),
+      });
+    }
+
     console.log('get the usersInfo:- ', this.users);
   }
 
-  saveUser() {}
+  saveUser() {
+    this.userForm.value;
+    console.log(this.userForm.value);
+    this.userSrv.adduser(this.userForm.value).subscribe({
+      next: (res) => {
+        console.log('only for the res data:', res);
+
+        this.users.push(res);
+        localStorage.setItem('user', JSON.stringify(this.users));
+        console.log('with push data', this.users.push(res));
+
+        // this.userForm.reset();
+      },
+    });
+  }
 }
