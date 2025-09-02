@@ -6,7 +6,7 @@ import { EmployeeDataComponent } from './Pages/employee-data/employee-data.compo
 import { ProductDataComponent } from './product-data/product-data.component';
 import { RestaurantMenuComponent } from './restaurant-menu/restaurant-menu.component';
 import { PracticeApiComponent } from './practice-api/practice-api.component';
-import { UserCrudComponent } from './user-crud/user-crud.component';
+import { UserCrudComponent } from './Pages/user-crud/user-crud.component';
 
 export const routes: Routes = [
   {
