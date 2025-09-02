@@ -20,7 +20,7 @@ export class UserCrudComponent implements OnInit {
   }
 
   loadUsers() {
-    return this.userSrv.getUsers().subscribe({
+    this.userSrv.getUsers().subscribe({
       next: (res) => (this.users = res),
       error: (err) => console.error('Error fetching here:- ', err),
     });
