@@ -10,6 +10,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { subscribeOn } from 'rxjs';
+import { identifierName } from '@angular/compiler';
 
 @Component({
   selector: 'app-user-crud',
@@ -22,6 +23,8 @@ export class UserCrudComponent implements OnInit {
 
   userForm!: FormGroup;
 
+  editId = 0;
+
   constructor(private fb: FormBuilder, private userSrv: UserService) {}
 
   ngOnInit(): void {
@@ -29,8 +32,8 @@ export class UserCrudComponent implements OnInit {
 
     this.userForm = this.fb.group({
       name: ['', Validators.required],
-      email: [''],
-      phone: [''],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', Validators.required],
     });
     console.log(this.userForm.value);
   }
@@ -53,18 +56,26 @@ export class UserCrudComponent implements OnInit {
   }
 
   saveUser() {
-    this.userForm.value;
-    console.log(this.userForm.value);
+    // this.userForm.value;
+    // console.log(this.userForm.value);
+    if (this.userForm.invalid) {
+      alert('Form is Invalid');
+    }
     this.userSrv.adduser(this.userForm.value).subscribe({
       next: (res) => {
         console.log('only for the res data:', res);
 
         this.users.push(res);
         localStorage.setItem('user', JSON.stringify(this.users));
-        console.log('with push data', this.users.push(res));
+        // console.log('with push data', this.users.push(res));
 
-        // this.userForm.reset();
+        this.userForm.reset();
       },
     });
+  }
+
+  onEdit(res: IUser) {
+    this.userForm.patchValue(res);
+    this.editId = res.id;
   }
 }
