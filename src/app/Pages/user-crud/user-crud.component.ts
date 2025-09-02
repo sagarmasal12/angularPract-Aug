@@ -1,22 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './service/user.service';
 import { IUser } from './model/user.model';
-import { NgForOf } from '../../../../node_modules/@angular/common/common_module.d-NEF7UaHr';
 import { NgFor } from '@angular/common';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-user-crud',
-  imports: [NgFor],
+  imports: [NgFor, FormsModule, ReactiveFormsModule],
   templateUrl: './user-crud.component.html',
   styleUrl: './user-crud.component.css',
 })
 export class UserCrudComponent implements OnInit {
   users: IUser[] = [];
 
-  constructor(private userSrv: UserService) {}
+  userForm!: FormGroup;
+
+  constructor(private fb: FormBuilder, private userSrv: UserService) {}
 
   ngOnInit(): void {
     this.loadUsers();
+
+    this.userForm = this.fb.group({
+      name: ['', Validators.required],
+      email: [''],
+      phone: [''],
+    });
+    console.log(this.userForm.value);
   }
 
   loadUsers() {
@@ -24,5 +39,8 @@ export class UserCrudComponent implements OnInit {
       next: (res) => (this.users = res),
       error: (err) => console.error('Error fetching here:- ', err),
     });
+    console.log('get the usersInfo:- ', this.users);
   }
+
+  saveUser() {}
 }
