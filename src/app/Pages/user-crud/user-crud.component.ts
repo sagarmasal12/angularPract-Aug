@@ -82,22 +82,31 @@ export class UserCrudComponent implements OnInit {
 
   updateusers() {
     if (this.editId) {
-      debugger;
-      this.userSrv.updateUser(this.editId, this.userForm.value).subscribe({
-        next: (updateUser) => {
-          const index = this.users.findIndex((u) => u.id === this.editId);
-          if (index !== -1) {
-            this.users[index] = updateUser;
-          }
-          localStorage.setItem('user', JSON.stringify(this.users));
-          this.editId = 0;
+      if (this.editId <= 10) {
+        this.userSrv.updateUser(this.editId, this.userForm.value).subscribe({
+          next: (updateUser) => {
+            const index = this.users.findIndex((u) => u.id === this.editId);
+            if (index !== -1) {
+              this.users[index] = { id: this.editId, ...this.userForm.value };
+            }
+            localStorage.setItem('user', JSON.stringify(this.users));
+            this.editId = 0;
 
-          this.userForm.reset();
-        },
-        error: (err) => {
-          console.error('Error updating user:-', err);
-        },
-      });
+            this.userForm.reset();
+          },
+          error: (err) => {
+            console.error('Error updating user:-', err);
+          },
+        });
+      } else {
+        const index = this.users.findIndex((u) => u.id === this.editId);
+        if (index !== -1) {
+          this.users[index] = { id: this.editId, ...this.userForm.value };
+        }
+        localStorage.setItem('user', JSON.stringify(this.users));
+        this.userForm.reset();
+        console.log('User updated locally (id > 10)');
+      }
     }
   }
 
