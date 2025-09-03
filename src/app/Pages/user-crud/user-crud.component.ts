@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './service/user.service';
 import { IUser } from './model/user.model';
-import { NgFor } from '@angular/common';
+import { JsonPipe, NgFor } from '@angular/common';
 import {
   FormBuilder,
   FormGroup,
@@ -11,10 +11,11 @@ import {
 } from '@angular/forms';
 import { subscribeOn } from 'rxjs';
 import { identifierName } from '@angular/compiler';
+import { NgIf, CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-user-crud',
-  imports: [NgFor, FormsModule, ReactiveFormsModule],
+  imports: [NgFor, FormsModule, ReactiveFormsModule, NgIf, CommonModule],
   templateUrl: './user-crud.component.html',
   styleUrl: './user-crud.component.css',
 })
@@ -79,7 +80,26 @@ export class UserCrudComponent implements OnInit {
     this.editId = res.id;
   }
 
-  updateusers() {}
+  updateusers() {
+    if (this.editId) {
+      debugger;
+      this.userSrv.updateUser(this.editId, this.userForm.value).subscribe({
+        next: (updateUser) => {
+          const index = this.users.findIndex((u) => u.id === this.editId);
+          if (index !== -1) {
+            this.users[index] = updateUser;
+          }
+          localStorage.setItem('user', JSON.stringify(this.users));
+          this.editId = 0;
+
+          this.userForm.reset();
+        },
+        error: (err) => {
+          console.error('Error updating user:-', err);
+        },
+      });
+    }
+  }
 
   onDelete(usr: IUser) {
     debugger;
