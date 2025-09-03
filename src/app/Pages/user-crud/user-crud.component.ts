@@ -78,4 +78,8 @@ export class UserCrudComponent implements OnInit {
     this.userForm.patchValue(res);
     this.editId = res.id;
   }
+
+  updateusers() {}
+
+  onDelete() {}
 }
