@@ -8,6 +8,8 @@ import { IUser } from '../model/user.model';
 })
 export class UserService {
   private apiUrl = 'https://jsonplaceholder.typicode.com/users';
+
+  private users: IUser[] = [];
   constructor(private http: HttpClient) {}
 
   getUsers(): Observable<IUser[]> {
@@ -20,5 +22,9 @@ export class UserService {
 
   updateUser(id: number, user: IUser) {
     return this.http.put<IUser>(`${this.apiUrl}/${id}`, user);
+  }
+
+  deleteUser(res: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${res}`);
   }
 }

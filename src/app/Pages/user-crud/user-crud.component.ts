@@ -81,5 +81,15 @@ export class UserCrudComponent implements OnInit {
 
   updateusers() {}
 
-  onDelete() {}
+  onDelete(usr: IUser) {
+    debugger;
+    this.userSrv.deleteUser(usr.id).subscribe({
+      next: () => {
+        this.users = this.users.filter((u) => u.id !== usr.id);
+        localStorage.setItem('user', JSON.stringify(this.users));
+        console.log(`User with Id ${usr.id} deleted`);
+      },
+      error: (err) => console.error('Error deleting user:', err),
+    });
+  }
 }
