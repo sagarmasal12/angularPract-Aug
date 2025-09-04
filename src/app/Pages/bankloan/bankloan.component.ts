@@ -11,6 +11,7 @@ import { BankloanService } from './bankloan.service';
 
 import { NgFor } from '@angular/common';
 import { CommonModule } from '@angular/common';
+import { concat } from 'rxjs';
 
 @Component({
   selector: 'app-bankloan',
@@ -62,5 +63,6 @@ export class BankloanComponent implements OnInit {
 
   resetForm() {
     this.bankloanform.reset();
+    this.editId = 0;
   }
 }
