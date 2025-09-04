@@ -7,6 +7,7 @@ import { ProductDataComponent } from './product-data/product-data.component';
 import { RestaurantMenuComponent } from './restaurant-menu/restaurant-menu.component';
 import { PracticeApiComponent } from './practice-api/practice-api.component';
 import { UserCrudComponent } from './Pages/user-crud/user-crud.component';
+import { BankloanComponent } from './Pages/bankloan/bankloan.component';
 
 export const routes: Routes = [
   {
@@ -40,5 +41,9 @@ export const routes: Routes = [
   {
     path: 'user-crud',
     component: UserCrudComponent,
+  },
+  {
+    path: 'bankloan',
+    component: BankloanComponent,
   },
 ];
