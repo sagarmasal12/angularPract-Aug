@@ -9,13 +9,24 @@
               <a class="navbar-brand fw-semibold" href="#">
                 <i class="bi bi-bank2 me-2 text-primary"></i>Bank Loan Admin
               </a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"
-                aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#nav"
+                aria-controls="nav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="nav">
                 <div class="ms-auto d-flex gap-2">
-                  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userModal">
+                  <button
+                    class="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#userModal"
+                  >
                     <i class="bi bi-plus-lg me-1"></i> New User
                   </button>
                 </div>
@@ -28,11 +39,18 @@
             <div class="row g-4">
               <div class="col-12">
                 <div class="card p-3 p-lg-4">
-                  <div class="d-flex flex-column flex-lg-row gap-3 align-items-stretch align-items-lg-center mb-3">
+                  <div
+                    class="d-flex flex-column flex-lg-row gap-3 align-items-stretch align-items-lg-center mb-3"
+                  >
                     <div class="input-group input-group-lg rounded-2xl">
-                      <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
-                      <input type="search" class="form-control border-start-0"
-                        placeholder="Search by name, username, email… (UI only)" />
+                      <span class="input-group-text bg-white border-end-0"
+                        ><i class="bi bi-search"></i
+                      ></span>
+                      <input
+                        type="search"
+                        class="form-control border-start-0"
+                        placeholder="Search by name, username, email… (UI only)"
+                      />
                     </div>
                     <div class="ms-lg-auto d-flex gap-2">
                       <div class="btn-group" role="group" aria-label="Export">
@@ -47,7 +65,10 @@
                         <!-- <button><i class="bi bi-funnel me-1"></i> Role</button> -->
                         <select class="form-control">
                           <option value="" selected disabled>Role</option>
-                          <option *ngFor="let item of bankloan" [value]="item.role">
+                          <option
+                            *ngFor="let item of bankloan"
+                            [value]="item.role"
+                          >
                             {{ item.role }}
                           </option>
                         </select>
@@ -90,7 +111,7 @@
                           <td>{{ item.emailId }}</td>
                           <td>{{ item.role }}</td>
                           <td class="text-center">
-                            <i class="bi bi-pen me-2"></i>
+                            <i class="bi bi-pen me-2" (click)="edituser(item)"></i>
                             <i class="bi bi-archive ms-2"></i>
                           </td>
                         </tr>
@@ -125,21 +146,41 @@
             <form [formGroup]="bankloanform">
               <div class="row">
                 <div class="col-6">
-                  <input type="text" placeholder="Enter Full Name" class="form-control mt-2" formControlName="fullName">
-                  <input type="text" placeholder="Enter Email-Id" class="form-control mt-2" formControlName="emailId">
-
+                  <input
+                    type="text"
+                    placeholder="Enter Full Name"
+                    class="form-control mt-2"
+                    formControlName="fullName"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Enter Email-Id"
+                    class="form-control mt-2"
+                    formControlName="emailId"
+                  />
                 </div>
                 <div class="col-6">
-                  <input type="text" placeholder="Enter Username" class="form-control mt-2" formControlName="userName">
-                   <input type="text" placeholder="Enter Role" class="form-control mt-2" formControlName="role">
+                  <input
+                    type="text"
+                    placeholder="Enter Username"
+                    class="form-control mt-2"
+                    formControlName="userName"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Enter Role"
+                    class="form-control mt-2"
+                    formControlName="role"
+                  />
                 </div>
               </div>
             </form>
-
           </div>
           <div class="card-footer">
-            <div class="btn btn-success ms-3 float-end">Add</div>
-            <div class="btn btn-danger float-end ">Reset</div>
+            <div class="btn btn-success ms-3 float-end" *ngIf="editId === 0">Add</div>
+            <div class="btn btn-warning ms-3 float-end" *ngIf="editId >= 0">Update</div>
+
+            <div class="btn btn-danger float-end" (click)="resetForm()">Reset</div>
           </div>
         </div>
       </div>
@@ -147,39 +188,74 @@
   </div>
 
   <!-- Add/Edit User Modal (UI only) -->
-  <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+  <div
+    class="modal fade"
+    id="userModal"
+    tabindex="-1"
+    aria-labelledby="userModalLabel"
+    aria-hidden="true"
+  >
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content rounded-4">
         <div class="modal-header">
           <h5 class="modal-title" id="userModalLabel">
             <i class="bi bi-person-plus me-2"></i>Add / Edit User
           </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </div>
         <div class="modal-body">
           <form class="row g-3">
             <div class="col-12 col-md-4">
               <div class="form-floating">
-                <input type="number" class="form-control" id="userId" placeholder="User ID" />
+                <input
+                  type="number"
+                  class="form-control"
+                  id="userId"
+                  placeholder="User ID"
+                />
                 <label for="userId">User ID <span class="req">*</span></label>
               </div>
             </div>
             <div class="col-12 col-md-8">
               <div class="form-floating">
-                <input type="text" class="form-control" id="fullName" placeholder="Full Name" />
-                <label for="fullName">Full Name <span class="req">*</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fullName"
+                  placeholder="Full Name"
+                />
+                <label for="fullName"
+                  >Full Name <span class="req">*</span></label
+                >
               </div>
             </div>
 
             <div class="col-12 col-md-6">
               <div class="form-floating">
-                <input type="text" class="form-control" id="userName" placeholder="Username" />
-                <label for="userName">Username <span class="req">*</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="userName"
+                  placeholder="Username"
+                />
+                <label for="userName"
+                  >Username <span class="req">*</span></label
+                >
               </div>
             </div>
             <div class="col-12 col-md-6">
               <div class="form-floating">
-                <input type="email" class="form-control" id="emailId" placeholder="Email" />
+                <input
+                  type="email"
+                  class="form-control"
+                  id="emailId"
+                  placeholder="Email"
+                />
                 <label for="emailId">Email <span class="req">*</span></label>
               </div>
             </div>
@@ -197,7 +273,10 @@
             </div>
 
             <div class="col-12">
-              <div class="alert alert-info d-flex align-items-center mb-0" role="alert">
+              <div
+                class="alert alert-info d-flex align-items-center mb-0"
+                role="alert"
+              >
                 <i class="bi bi-info-circle me-2"></i>
                 This is a static UI. Hook up your Angular form & APIs for
                 functionality.
@@ -206,7 +285,11 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            data-bs-dismiss="modal"
+          >
             Cancel
           </button>
           <button type="button" class="btn btn-primary">Save</button>

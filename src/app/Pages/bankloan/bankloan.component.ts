@@ -10,15 +10,17 @@ import {
 import { BankloanService } from './bankloan.service';
 
 import { NgFor } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-bankloan',
-  imports: [NgFor, FormsModule, ReactiveFormsModule],
+  imports: [NgFor, FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './bankloan.component.html',
   styleUrl: './bankloan.component.css',
 })
 export class BankloanComponent implements OnInit {
   bankloan: Ibankloan[] = [];
+  editId = 0;
 
   bankloanform!: FormGroup;
 
@@ -43,11 +45,22 @@ export class BankloanComponent implements OnInit {
       next: (res: any) => {
         this.bankloan = res.data;
 
+        const roles = this.bankloan;
+
         console.log('result:-', res.data);
       },
       error: (err) => {
         (this.error = 'Failed to fetch bankloan users'), err;
       },
     });
+  }
+
+  edituser(res: Ibankloan) {
+    this.bankloanform.patchValue(res);
+    this.editId = res.userId;
+  }
+
+  resetForm() {
+    this.bankloanform.reset();
   }
 }
