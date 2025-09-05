@@ -4,4 +4,5 @@ export interface Ibankloan {
   emailId: string;
   fullName: string;
   role: string;
+  password: string;
 }
