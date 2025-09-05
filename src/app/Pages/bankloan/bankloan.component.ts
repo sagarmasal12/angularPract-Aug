@@ -31,11 +31,11 @@ export class BankloanComponent implements OnInit {
 
   ngOnInit(): void {
     this.bankloanform = this.fb.group({
-      userId: [],
+      userId: [0],
       userName: ['', Validators.required],
       emailId: ['', [Validators.required, Validators.email]],
       fullName: [''],
-      role: [''],
+      password: [''],
     });
 
     this.getbankLoanuser();
@@ -56,6 +56,26 @@ export class BankloanComponent implements OnInit {
     });
   }
 
+  addUser() {
+    const payLoad = {
+      UserId: this.bankloanform.value.userId,
+      UserName: this.bankloanform.value.userName,
+      EmailId: this.bankloanform.value.emailId,
+      FullName: this.bankloanform.value.fullName,
+      Password: this.bankloanform.value.password,
+    };
+    console.log('Payload:', this.bankloanform.value);
+    this.bankSrv.addbankUsers(payLoad).subscribe({
+      next: (res: any) => {
+        console.log('Response', res);
+        this.getbankLoanuser();
+      },
+      error: (err) => {
+        console.error('Invalid format', err);
+      },
+    });
+  }
+
   edituser(res: Ibankloan) {
     this.bankloanform.patchValue(res);
     this.editId = res.userId;
@@ -64,5 +84,20 @@ export class BankloanComponent implements OnInit {
   resetForm() {
     this.bankloanform.reset();
     this.editId = 0;
+  }
+
+  deleteUser(id: number) {
+    debugger;
+    const result = confirm('Are you sure you want to delete');
+    if (!result) return;
+    this.bankSrv.onDelete(id).subscribe({
+      next: (res) => {
+        console.log('Deleted successfully', res);
+        this.getbankLoanuser();
+      },
+      error(err) {
+        console.log(err);
+      },
+    });
   }
 }
