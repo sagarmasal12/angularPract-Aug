@@ -3,6 +3,7 @@
   height: 1.5rem;
 }
 
+
 .bodyBg{
      background-image:url("/src/assets/images/bg-bottom.svg"), url('/assets/images/bg-top.svg');
   /* background-size: cover; */
@@ -10,4 +11,5 @@
   background-position:left bottom,right top ;
 
   background-repeat: no-repeat; 
+  font-family: mosterrat;
 }

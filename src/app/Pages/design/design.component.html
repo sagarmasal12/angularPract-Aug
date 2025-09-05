@@ -1,11 +1,96 @@
-<div class="container">
+<body>
+  <div class="container bodyBg">
     <div class="row">
-        <div class="col-12">
-            <div>
-                <img [src]="imagePath" alt="bgimg" height="150" width="150">
+      <div class="col-12">
+        <div class="bgimgDiv mt-5 shadow mb-5">
+          <div class="text-center fw-bold pt-4">
+            <h1>Our Pricing</h1>
+          </div>
+          <div
+            class="d-flex align-items-center justify-content-center gap-3 mt-4 pb-3"
+          >
+            <span id="annually" class="fw-bold">Annually</span>
+
+            <div class="form-check form-switch toggle-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="pricingToggle"
+              />
             </div>
 
-            <img src="assets/images/bg-top.svg" alt="bgimg" height="150" width="150">
+            <span id="monthly" class="fw-bold">Monthly</span>
+          </div>
         </div>
+        <hr />
+        <div class="container">
+          <div class="row text-center justify-content-center" style="position: absolute;">
+            <div class="col-md-4" style="position: relative">
+              <div class="card p-4 mt-4 ms-0">
+                <h5 class="fw-bold">Basic</h5>
+                <h1 class="fw-bold pt-3">$199.99</h1>
+                <br />
+                <hr />
+                <div>
+                  <p class="text-muted">500 GB Storage</p>
+                  <hr />
+                  <p class="text-muted">2 Users Allowed</p>
+                  <hr />
+                  <p class="text-muted">Send up to 3 GB</p>
+                  <hr />
+                  <br>
+                  <div class="btn btn-primary ms-5 me-5">
+                  LEARN MORE
+                </div>
+                </div>
+                <br />
+                
+                <br />
+              </div>
+            </div>
+            <div class="col-md-4 ms-0">
+              <div class="card text-white p-4" style="background-color: blue">
+                <h5 class="fw-bold">Proffessional</h5>
+                <h1 class="fw-bold pt-3">$249.99</h1>
+                <br />
+                <hr />
+                <div class="text-white">
+                  <p>500 GB Storage</p>
+                  <hr />
+                  <p>2 Users Allowed</p>
+                  <hr />
+                  <p>Send up to 3 GB</p>
+                  <hr />
+                  <br />
+                  <div class="btn btn-md btn-light rounded ms-5 me-5">
+                    LEARN MORE
+                  </div>
+                </div>
+                <br />
+                <br>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mt-4 p-4 ms-0">
+                <h5 class="fw-bold">Master</h5>
+                <h1 class="fw-bold pt-3">$399.99</h1>
+                <br />
+                <div>
+                  <p class="text-muted">500 GB Storage</p>
+                  <hr />
+                  <p class="text-muted">2 Users Allowed</p>
+                  <hr />
+                  <p class="text-muted">Send up to 3 GB</p>
+                  <hr />
+                  <div class="btn btn-primary mb-3 mt-5">LEARN MORE</div>
+                  <br />
+                  <br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+</body>
