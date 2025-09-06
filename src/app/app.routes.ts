@@ -4,7 +4,6 @@ import { UsersComponent } from './Pages/users/users.component';
 import { StudentsComponent } from './Pages/students/students.component';
 import { EmployeeDataComponent } from './Pages/employee-data/employee-data.component';
 import { ProductDataComponent } from './product-data/product-data.component';
-import { RestaurantMenuComponent } from './restaurant-menu/restaurant-menu.component';
 import { PracticeApiComponent } from './practice-api/practice-api.component';
 import { UserCrudComponent } from './Pages/user-crud/user-crud.component';
 import { BankloanComponent } from './Pages/bankloan/bankloan.component';
@@ -30,10 +29,6 @@ export const routes: Routes = [
   {
     path: 'product-data',
     component: ProductDataComponent,
-  },
-  {
-    path: 'restaurant-menu',
-    component: RestaurantMenuComponent,
   },
   {
     path: 'practiceapi',
