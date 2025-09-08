@@ -43,14 +43,18 @@
             </form>
         </div>
     </div>
+    
 
     <!-- User Table Card -->
     <div class="card shadow-sm">
         <div class="card-header bg-dark text-white">
             <h5 class="mb-0">Users List</h5>
+            <div class="form-check mt-2 form-switch ">
+                <input class="form-check-input toggle-big" type="checkbox" (change)="toggleTable($event)">
+            </div>
         </div>
         <div class="card-body">
-            <table class="table table-bordered table-hover text-center align-middle">
+            <table class="table table-bordered table-hover text-center align-middle" *ngIf="hideTable">
                 <thead class="table-dark">
                     <tr>
                         <th>ID</th>
