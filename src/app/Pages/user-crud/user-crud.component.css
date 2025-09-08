@@ -1,0 +1,6 @@
+.toggle-big{
+    transform: scale(1.2);
+    padding: 2px;
+    margin-right: 10px;
+    cursor: pointer;
+}
