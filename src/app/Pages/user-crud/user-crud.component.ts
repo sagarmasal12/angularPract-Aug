@@ -26,6 +26,8 @@ export class UserCrudComponent implements OnInit {
 
   editId = 0;
 
+  hideTable: boolean = false;
+
   constructor(private fb: FormBuilder, private userSrv: UserService) {}
 
   ngOnInit(): void {
@@ -54,6 +56,12 @@ export class UserCrudComponent implements OnInit {
     }
 
     console.log('get the usersInfo:- ', this.users);
+  }
+
+  toggleTable(event: any) {
+    console.log(event);
+
+    this.hideTable = event.target.checked;
   }
 
   saveUser() {
