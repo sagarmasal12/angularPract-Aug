@@ -10,7 +10,7 @@
             <span id="annually" class="fw-bold">Annually</span>
 
             <div class="form-check form-switch toggle-switch">
-              <input class="form-check-input" type="checkbox" id="pricingToggle" />
+              <input class="form-check-input" type="checkbox" id="pricingToggle" (change)="toggleDiv($event)" />
             </div>
 
             <span id="monthly" class="fw-bold">Monthly</span>
@@ -18,7 +18,7 @@
         </div>
         <hr />
         <div class="container mb-5">
-          <div class="row text-center justify-content-center g-0">
+          <div class="row text-center justify-content-center g-0" *ngIf="hideDiv">
             <div class="col-md-4">
               <div class="card p-4 mt-4 ms-0 border-danger border-2">
                 <h5 class="fw-bold">Basic</h5>
