@@ -57,7 +57,8 @@
               "buildTarget": "practice-aug:build:production"
             },
             "development": {
-              "buildTarget": "practice-aug:build:development"
+              "buildTarget": "practice-aug:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
