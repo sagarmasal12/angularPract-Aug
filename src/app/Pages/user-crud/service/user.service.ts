@@ -7,17 +7,18 @@ import { IUser } from '../model/user.model';
   providedIn: 'root',
 })
 export class UserService {
-  private apiUrl = 'https://jsonplaceholder.typicode.com/users';
+  // private apiUrl = 'https://jsonplaceholder.typicode.com/users';
+  private apiUrl = 'http://localhost:6100';
 
   private users: IUser[] = [];
   constructor(private http: HttpClient) {}
 
-  getUsers(): Observable<IUser[]> {
-    return this.http.get<IUser[]>(this.apiUrl);
+  getUsers(): Observable<any> {
+    return this.http.get(this.apiUrl);
   }
 
   adduser(user: IUser): Observable<IUser> {
-    return this.http.post<IUser>(this.apiUrl, user);
+    return this.http.post<IUser>(this.apiUrl, this.users);
   }
 
   updateUser(id: number, user: IUser) {
