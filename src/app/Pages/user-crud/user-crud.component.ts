@@ -26,7 +26,7 @@ export class UserCrudComponent implements OnInit {
 
   editId = 0;
 
-  hideTable: boolean = false;
+  // hideTable: boolean = false;
 
   constructor(private fb: FormBuilder, private userSrv: UserService) {}
 
@@ -36,12 +36,13 @@ export class UserCrudComponent implements OnInit {
     this.userForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required],
+      age: ['', Validators.required],
     });
     console.log(this.userForm.value);
   }
 
   loadUsers() {
+    debugger;
     const localData = localStorage.getItem('user');
     if (localData) {
       this.users = JSON.parse(localData);
@@ -58,11 +59,11 @@ export class UserCrudComponent implements OnInit {
     console.log('get the usersInfo:- ', this.users);
   }
 
-  toggleTable(event: any) {
-    console.log(event);
+  // toggleTable(event: any) {
+  //   console.log(event);
 
-    this.hideTable = event.target.checked;
-  }
+  //   this.hideTable = event.target.checked;
+  // }
 
   saveUser() {
     // this.userForm.value;
@@ -84,49 +85,47 @@ export class UserCrudComponent implements OnInit {
   }
 
   onEdit(res: IUser) {
-    this.userForm.patchValue(res);
-    this.editId = res.id;
+    // this.userForm.patchValue(res);
+    // this.editId = res.id;
   }
 
   updateusers() {
-    if (this.editId) {
-      if (this.editId <= 10) {
-        this.userSrv.updateUser(this.editId, this.userForm.value).subscribe({
-          next: (updateUser) => {
-            const index = this.users.findIndex((u) => u.id === this.editId);
-            if (index !== -1) {
-              this.users[index] = { id: this.editId, ...this.userForm.value };
-            }
-            localStorage.setItem('user', JSON.stringify(this.users));
-            this.editId = 0;
-
-            this.userForm.reset();
-          },
-          error: (err) => {
-            console.error('Error updating user:-', err);
-          },
-        });
-      } else {
-        const index = this.users.findIndex((u) => u.id === this.editId);
-        if (index !== -1) {
-          this.users[index] = { id: this.editId, ...this.userForm.value };
-        }
-        localStorage.setItem('user', JSON.stringify(this.users));
-        this.userForm.reset();
-        console.log('User updated locally (id > 10)');
-      }
-    }
+    // if (this.editId) {
+    //   if (this.editId <= 10) {
+    //     this.userSrv.updateUser(this.editId, this.userForm.value).subscribe({
+    //       next: (updateUser) => {
+    //         const index = this.users.findIndex((u) => u.id === this.editId);
+    //         if (index !== -1) {
+    //           this.users[index] = { id: this.editId, ...this.userForm.value };
+    //         }
+    //         localStorage.setItem('user', JSON.stringify(this.users));
+    //         this.editId = 0;
+    //         this.userForm.reset();
+    //       },
+    //       error: (err) => {
+    //         console.error('Error updating user:-', err);
+    //       },
+    //     });
+    //   } else {
+    //     const index = this.users.findIndex((u) => u.id === this.editId);
+    //     if (index !== -1) {
+    //       this.users[index] = { id: this.editId, ...this.userForm.value };
+    //     }
+    //     localStorage.setItem('user', JSON.stringify(this.users));
+    //     this.userForm.reset();
+    //     console.log('User updated locally (id > 10)');
+    //   }
+    // }
   }
 
   onDelete(usr: IUser) {
-    debugger;
-    this.userSrv.deleteUser(usr.id).subscribe({
-      next: () => {
-        this.users = this.users.filter((u) => u.id !== usr.id);
-        localStorage.setItem('user', JSON.stringify(this.users));
-        console.log(`User with Id ${usr.id} deleted`);
-      },
-      error: (err) => console.error('Error deleting user:', err),
-    });
+    // this.userSrv.deleteUser(usr.id).subscribe({
+    //   next: () => {
+    //     this.users = this.users.filter((u) => u.id !== usr.id);
+    //     localStorage.setItem('user', JSON.stringify(this.users));
+    //     console.log(`User with Id ${usr.id} deleted`);
+    //   },
+    //   error: (err) => console.error('Error deleting user:', err),
+    // });
   }
 }
