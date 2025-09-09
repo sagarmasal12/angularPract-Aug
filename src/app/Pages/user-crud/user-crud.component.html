@@ -22,9 +22,9 @@
                             formControlName="email" />
                     </div>
                     <div class="col-md-6">
-                        <label for="phone" class="form-label">Phone</label>
-                        <input type="text" class="form-control" id="phone" placeholder="Enter Phone Number"
-                            formControlName="phone" maxlength="10" />
+                        <label for="phone" class="form-label">Age</label>
+                        <input type="text" class="form-control" id="age" placeholder="Enter age"
+                            formControlName="age" maxlength="10" />
                     </div>
                 </div>
 
@@ -49,15 +49,15 @@
     <div class="card shadow-sm">
         <div class="card-header bg-dark text-white">
             <h5 class="mb-0">Users List</h5>
-            <div class="form-check mt-2 form-switch ">
+            <!-- <div class="form-check mt-2 form-switch ">
                 <input class="form-check-input toggle-big" type="checkbox" (change)="toggleTable($event)">
-            </div>
+            </div> -->
         </div>
         <div class="card-body">
-            <table class="table table-bordered table-hover text-center align-middle" *ngIf="hideTable">
+            <table class="table table-bordered table-hover text-center align-middle">
                 <thead class="table-dark">
                     <tr>
-                        <th>ID</th>
+                        <!-- <th>ID</th> -->
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
@@ -67,10 +67,10 @@
                 <tbody>
                     <!-- Static rows only for UI preview -->
                     <tr *ngFor="let item of users;let i = index">
-                        <td>{{i+1}}</td>
+                        <!-- <td>{{i+1}}</td> -->
                         <td>{{ item.name }}</td>
                         <td>{{ item.email }}</td>
-                        <td>{{ item.phone }}</td>
+                        <td>{{ item.age }}</td>
                         <td>
                             <button class="btn btn-sm btn-primary me-1" (click)="onEdit(item)">Edit</button>
                             <button class="btn btn-sm btn-danger" (click)="onDelete(item)">Delete</button>
