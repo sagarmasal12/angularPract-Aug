@@ -1,0 +1,81 @@
+<div class="container mt-3">
+  <h2>Bus Users</h2>
+
+  <div *ngIf="loading" class="alert alert-info">
+    <div class="spinner-border text-warning"></div>
+  </div>
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+  <!-- 
+    <input type="text" class="form-control mb-3" placeholder="Search by name or email" [(ngModel)]="searchText" /> -->
+
+  <div class="row">
+    <div class="col-8">
+      <table
+        class="table table-bordered table-striped"
+        *ngIf="!loading && users.length"
+      >
+        <thead class="table-dark">
+          <tr>
+            <th>Id</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <!-- <th>Role</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of users; index as i">
+            <td>{{ i + 1 }}</td>
+            <td>{{ item.fullName }}</td>
+            <td>{{ item.emailId }}</td>
+            <td>{{ item.role }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-4">
+      <form [formGroup]="bususerform">
+        <div class="card">
+          <div class="card-header">
+            <p>Add the Bus User</p>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-6">
+                <input
+                  type="text"
+                  class="form-control mt-1"
+                  placeholder="Enter Name"
+                  formControlName="userName"
+                />
+                <input
+                  type="text"
+                  class="form-control mt-1"
+                  placeholder="Enter Email"
+                  formControlName="emailId"
+                />
+              </div>
+              <div class="col-5">
+                <input
+                  type="text"
+                  class="form-control mt-1"
+                  placeholder="Enter Role"
+                  formControlName="role"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="row">
+                <div class="col-5">
+                    <div class="btn btn-primary" (click)="addUser()">AddUser</div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <p *ngIf="!loading && !users.length" class="text-muted">No users found.</p>
+</div>
