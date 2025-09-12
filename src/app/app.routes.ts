@@ -1,19 +1,14 @@
 import { Routes } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { UsersComponent } from './Pages/users/users.component';
 import { StudentsComponent } from './Pages/students/students.component';
 import { EmployeeDataComponent } from './Pages/employee-data/employee-data.component';
-import { ProductDataComponent } from './product-data/product-data.component';
-import { PracticeApiComponent } from './practice-api/practice-api.component';
+import { ProductDataComponent } from './Pages/product-data/product-data.component';
+import { PracticeApiComponent } from './Pages/practice-api/practice-api.component';
 import { UserCrudComponent } from './Pages/user-crud/user-crud.component';
 import { BankloanComponent } from './Pages/bankloan/bankloan.component';
 import { DesignComponent } from './Pages/design/design.component';
 
 export const routes: Routes = [
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-  },
   {
     path: 'user',
     component: UsersComponent,
